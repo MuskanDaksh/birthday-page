@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday Gltfami!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://www.transparenttextures.com/patterns/cream-dust.png');
+      color: #5c3a4d;
+      scroll-behavior: smooth;
+    }
+
+    .surprise-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #f8e1ea, #fcefee);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .surprise-overlay button {
+      padding: 1em 2em;
+      font-size: 1.2em;
+      background-color: #fff;
+      border: 2px solid #d48ca6;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+
+    .surprise-overlay button:hover {
+      transform: scale(1.08);
+    }
+
+    .site-content {
+      display: none;
+    }
+
+    .page {
+      padding: 4em 2em;
+      text-align: center;
+      min-height: 100vh;
+      border-bottom: 1px dashed #d48ca6;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+    }
+
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1, h2 {
+      font-family: 'Georgia', serif;
+      margin-bottom: 0.5em;
+      color: #a0527d;
+      font-size: xx-large;
+    }
+
+    .profile-pic {
+      width: 240px;
+      border-radius: 50%;
+      margin: 1em 0;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      border: 5px solid #f8e1ea;
+    }
+
+    .tribute-text {
+      max-width: 850px;
+      margin: 0 auto;
+      font-size: 1.2em;
+      line-height: 1.8em;
+      padding: 1.5em;
+      background-color: #ffffffd9;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.08);
+    }
+
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 9;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #d48ca6;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Surprise Overlay -->
+  <div class="surprise-overlay" id="surprise">
+    <h1>🎁 A Special Surprise Awaits 🎁</h1>
+    <button onclick="revealSite()">Click to Reveal</button>
+  </div>
+  
+
+  <!-- Confetti -->
+  <div class="confetti" id="confetti"></div>
+
+  <!-- Site Content -->
+  <div class="site-content" id="content">
+    <!-- Page 1: Greeting -->
+    <section class="page page1">
+      <h1>Happy Birthday, Beautiful! 🎉</h1>
+      <img src="https://drive.google.com/file/d/126uxNct_JIYlM3KJcOI2ZD_dtRJYAXtP/view?usp=drivesdk" alt="Her Photo" class="profile-pic" />
+      <p>Wishing you a day filled with love, laughter, and cake!</p>
+    </section>
+
+    <!-- Page 2: Tribute -->
+    <section class="page page2">
+      <h2>A Tribute to Your Journey ✨</h2>
+      <div class="tribute-text">
+        🎉🎂 Happy Birthday, my dear friend! 🎂🎉<br><br>
+        Today is all about you—the person who’s chasing one of the toughest and most respected dreams out there: becoming a Chartered Accountant 🧾. On your special day, I want to remind you how incredibly proud I am of everything you're doing, and how much strength it takes to stay committed to such a demanding journey. Your passion, discipline, and never-say-die attitude continue to inspire everyone around you. 💪📚<br><br>
+        Whether it’s the long study hours 🌙, constant revisions ✍, or those silent moments of pressure—you’ve handled everything with so much strength and grace. The CA journey is not just about intelligence, but also about consistency, patience, and mental toughness—and you’ve shown all of that in abundance 🔥.<br><br>
+        There may be moments when the weight of expectations feels heavy, but don’t forget how far you’ve already come. Many dream big, but only a few have the courage to pursue those dreams with the intensity that you do. You’re not just preparing for a career—you’re building a legacy. 💼🌟<br><br>
+        So today, take a deep breath 😌, smile 😊, and celebrate the amazing person you are—not just for your academic efforts, but for being kind, determined, and full of purpose. You truly deserve all the happiness and success that life has to offer.<br><br>
+        May this new year of your life bring you inner peace 🕊, fresh motivation 💫, meaningful progress 📈, and countless joyful moments 🎈. I believe in you completely, and I can't wait to see you succeed and shine as the incredible CA you're destined to become. ✨<br><br>
+        Remember, success doesn’t come overnight—but with the heart you have, nothing is out of reach.<br><br>
+        🎉 Happy Birthday Gltfami once again, future CA! Wishing you a year full of blessings, breakthroughs, and beautiful beginnings. 🥳🎁🎂
+      </div>
+    </section>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function revealSite() {
+      document.getElementById('surprise').style.display = 'none';
+      document.getElementById('content').style.display = 'block';
+      launchConfetti();
+      handleScroll();
+    }
+
+    function launchConfetti() {
+      const confettiContainer = document.getElementById('confetti');
+      for (let i = 0; i < 100; i++) {
+        const piece = document.createElement('div');
+        piece.classList.add('confetti-piece');
+        piece.style.left = Math.random() * 100 + 'vw';
+        piece.style.top = '-10px';
+        piece.style.backgroundColor = ['#d48ca6', '#fcefee', '#f8e1ea'][Math.floor(Math.random() * 3)];
+        piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        confettiContainer.appendChild(piece);
+      }
+    }
+
+    function handleScroll() {
+      document.querySelectorAll('.page').forEach(page => {
+        const rect = page.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          page.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('load', handleScroll);
+  </script>
+</body>
+</html>
